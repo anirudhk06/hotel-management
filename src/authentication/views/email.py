@@ -32,8 +32,8 @@ class SignInAuthEndpoint(APIView):
             )
 
         user.last_login_medium = "email"
-        user.last_login_ip = self.request.META.get("REMOTE_ADDR")
-        user.last_login_uagent = self.request.META.get("HTTP_USER_AGENT")
+        user.last_login_ip = request.META.get("REMOTE_ADDR")
+        user.last_login_uagent = request.META.get("HTTP_USER_AGENT")
         user.save(
             update_fields=["last_login_medium", "last_login_ip", "last_login_uagent"]
         )
@@ -73,8 +73,8 @@ class SignUpAuthEndpoint(APIView):
 
                 user.set_password(validated_data["password"])
                 user.last_login_medium = "email"
-                user.last_login_ip = self.request.META.get("REMOTE_ADDR")
-                user.last_login_uagent = self.request.META.get("HTTP_USER_AGENT")
+                user.last_login_ip = request.META.get("REMOTE_ADDR")
+                user.last_login_uagent = request.META.get("HTTP_USER_AGENT")
                 user.save(
                     update_fields=[
                         "password",

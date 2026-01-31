@@ -3,6 +3,8 @@ from django.urls import path
 from .views import (
     ChangePasswordEndpoint,
     CSRFTokenEndpoint,
+    GoogleOauthCallbackEndpoint,
+    GoogleOauthInitiateEndpoint,
     RefreshTokenEndpoint,
     SignInAuthEndpoint,
     SignOutAuthEndpoint,
@@ -19,4 +21,7 @@ urlpatterns = [
     path("change-password", ChangePasswordEndpoint.as_view(), name="change-password"),
     # csrf
     path("csrf-token", CSRFTokenEndpoint.as_view(), name="get-csrf-token"),
+    # google
+    path("google/initiate", GoogleOauthInitiateEndpoint.as_view(), name="google-initiate"),
+    path("google/callback", GoogleOauthCallbackEndpoint.as_view(), name="google-callback"),
 ]

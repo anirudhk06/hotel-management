@@ -9,7 +9,7 @@ DEBUG = True
 ALLOWED_HOSTS = ["*"]
 
 
-if ENV.str("DATABASE_URL"):
+if ENV.bool("DATABASE_URL", False):
     DATABASES = {
         "default": dj_database_url.parse(
             ENV.str("DATABASE_URL"),
