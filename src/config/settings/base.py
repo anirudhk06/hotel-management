@@ -1,13 +1,20 @@
 import os
 from datetime import timedelta
+
 from config.env import BASE_DIR, ENV
 
-ENV.read_env(env_file=os.path.join(BASE_DIR, ".env"), overwrite=True)
+ENV.read_env(env_file=os.path.join(BASE_DIR.parent, ".env"), overwrite=True)
 
 # Application definition
-LOCAL_APPS = []
+LOCAL_APPS = [
+    "db",
+    "authentication",
+]
 
-THIRD_PARTY_APPS = []
+THIRD_PARTY_APPS = [
+    "rest_framework",
+    "rest_framework_simplejwt.token_blacklist",
+]
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -88,7 +95,7 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 
-# AUTH_USER_MODEL = "db.User"
+AUTH_USER_MODEL = "db.User"
 
 
 SIMPLE_JWT = {
@@ -105,6 +112,7 @@ REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.IsAuthenticated",
     ],
+    "NON_FIELD_ERRORS_KEY": "errors",
 }
 
 
